@@ -181,3 +181,85 @@ h1 {
   color: var(--muted);
   font-size: 0.95rem;
 }
+
+.page--studio {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.studio-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.studio-header h1 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.studio-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.75rem 0 2rem;
+}
+
+.studio-card {
+  width: 100%;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.wall-grid {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.wall-cover {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1.25rem 1.2rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(243, 235, 226, 0.08), transparent 42%),
+    color-mix(in srgb, var(--bg-elevated) 92%, black);
+  box-shadow: var(--shadow);
+}
+
+.wall-cover__role {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wall-cover__title {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.wall-cover__invite {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.invite-token {
+  display: block;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.28);
+  color: var(--ink);
+  font-size: 0.78rem;
+  word-break: break-all;
+}

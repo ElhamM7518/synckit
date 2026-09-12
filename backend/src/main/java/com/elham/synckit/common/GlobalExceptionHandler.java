@@ -9,6 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -33,6 +34,16 @@ public class GlobalExceptionHandler {
         );
         detail.setProperty("timestamp", Instant.now());
         detail.setProperty("fields", fields);
+        return detail;
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ProblemDetail handleTypeMismatch() {
+        ProblemDetail detail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST,
+                "Invalid request parameter"
+        );
+        detail.setProperty("timestamp", Instant.now());
         return detail;
     }
 }

@@ -2,7 +2,7 @@
 
 Local-first sync engine (Spring Boot) with Atelier, a studio-wall client (React + TypeScript).
 
-Current slice: JWT auth. Shared walls and the live board come next.
+Current slice: JWT auth and shared walls (create, list, join by token). The live board comes next.
 
 ## Stack
 
@@ -51,3 +51,16 @@ Local JWT signing uses `JWT_SECRET` when set, otherwise a development default in
 | POST | `/api/auth/register` | public |
 | POST | `/api/auth/login` | public |
 | GET | `/api/health` | public |
+
+## Walls API
+
+All walls routes need `Authorization: Bearer <accessToken>`.
+
+| Method | Path | Notes |
+|---|---|---|
+| POST | `/api/walls` | Create a wall; caller becomes `OWNER` and receives `shareToken` |
+| GET | `/api/walls` | Walls the caller belongs to |
+| GET | `/api/walls/{id}` | Members only. `shareToken` is returned for owners, omitted for editors |
+| POST | `/api/walls/join` | Body `{ "shareToken": "..." }`; caller becomes `EDITOR` (idempotent if already a member) |
+
+Create body: `{ "name": "Darkroom" }`. Names are trimmed; max 100 characters.

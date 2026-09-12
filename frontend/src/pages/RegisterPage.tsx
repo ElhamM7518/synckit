@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useAuthStore } from "../features/auth/store";
 import { ApiError } from "../lib/http";
 
 export function RegisterPage() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const setSession = useAuthStore((state) => state.setSession);
 
@@ -18,6 +19,7 @@ export function RegisterPage() {
   const mutation = useMutation({
     mutationFn: register,
     onSuccess: (data) => {
+      queryClient.clear();
       setSession(data.accessToken, data.user);
       navigate("/app", { replace: true });
     },

@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import { useAuthStore } from "../features/auth/store";
 import { ApiError } from "../lib/http";
 
 export function LoginPage() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
   const setSession = useAuthStore((state) => state.setSession);
@@ -19,6 +20,7 @@ export function LoginPage() {
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
+      queryClient.clear();
       setSession(data.accessToken, data.user);
       navigate(postLoginPath(location.state), { replace: true });
     },
