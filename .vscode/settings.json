@@ -1,0 +1,14 @@
+{
+  "java.configuration.maven.userSettings": "${workspaceFolder}/backend/.mvn/central-settings.xml",
+  "java.configuration.maven.globalSettings": "${workspaceFolder}/backend/.mvn/central-settings.xml",
+  "maven.executable.path": "${workspaceFolder}/backend/mvnw.cmd",
+  "java.configuration.updateBuildConfiguration": "automatic",
+
+  "eslint.workingDirectories": ["frontend"],
+  "typescript.tsdk": "frontend/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
+}

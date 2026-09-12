@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: synckit-postgres
+    environment:
+      POSTGRES_DB: synckit
+      POSTGRES_USER: synckit
+      POSTGRES_PASSWORD: synckit
+    ports:
+      - "5433:5432"
+    volumes:
+      - synckit_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U synckit -d synckit"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  synckit_pg:
